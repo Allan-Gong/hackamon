@@ -1,7 +1,13 @@
 $icon-font-path: '../fonts/';
+
+@import "variables.scss";
+
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
+
+@import "bootswatch.scss";
+@import "ripples.min.scss";
 
 .browserupgrade {
   margin: 0.2em 0;
@@ -45,11 +51,11 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
+// @media (min-width: 768px) {
+//   .container {
+//     max-width: 730px;
+//   }
+// }
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -90,3 +96,34 @@ body {
     border-bottom: 0;
   }
 }
+
+.bs-component {
+    position: relative;
+}
+
+.bs-component .modal {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    z-index: 1;
+    display: block;
+}
+.bs-component .modal-dialog {
+    width: 90%}
+.bs-component .popover {
+    position: relative;
+    display: inline-block;
+    width: 220px;
+    margin: 20px;
+}
+
+#source-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    font-weight: 700;
+}
+

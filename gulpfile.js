@@ -174,7 +174,7 @@ gulp.task('wiredep', () => {
     }))
     .pipe(gulp.dest('app/styles'));
 
-  gulp.src('app/*.html')
+  gulp.src('app/**/*.html')
     .pipe(wiredep({
       exclude: ['bootstrap-sass'],
       ignorePath: /^(\.\.\/)*\.\./
@@ -182,14 +182,32 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'wiredep', 'images', 'fonts', 'extras'], () => {
+gulp.task('wiredep2', () => {
+  gulp.src('app/styles/*.scss')
+    .pipe($.filter(file => file.stat && file.stat.size))
+    .pipe(wiredep({
+      ignorePath: /^(\.\.\/)+/
+    }))
+    .pipe(gulp.dest('app/styles'));
+});
+
+gulp.task('wiredep1', () => {
+  gulp.src('app/**/*.html')
+    .pipe(wiredep({
+      exclude: ['bootstrap-sass'],
+      ignorePath: /^(\.\.\/)*\.\./
+    }))
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('build', ['lint', 'html', 'wiredep2', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', () => {
   return new Promise(resolve => {
     dev = false;
-    runSequence(['clean', 'wiredep'], 'build', resolve);
+    runSequence(['clean', 'wiredep1'], 'build', resolve);
   });
 });
 
