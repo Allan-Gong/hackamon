@@ -3,9 +3,11 @@ const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const ssi = require('browsersync-ssi');
+const gulpSSI = require('gulp-ssi');
 const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
+const ghPages = require('gulp-gh-pages');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -56,21 +58,28 @@ gulp.task('lint:test', () => {
 
 gulp.task('html', ['styles', 'scripts'], () => {
   return gulp.src('app/*.html')
+    .pipe(gulpSSI())
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
-    .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
-    .pipe($.if(/\.html$/, $.htmlmin({
-      collapseWhitespace: true,
-      minifyCSS: true,
-      minifyJS: {compress: {drop_console: true}},
-      processConditionalComments: true,
-      removeComments: true,
-      removeEmptyAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
-    })))
+    // .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
+    // .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
+    // .pipe($.if(/\.html$/, $.htmlmin({
+    //   collapseWhitespace: true,
+    //   minifyCSS: true,
+    //   minifyJS: {compress: {drop_console: true}},
+    //   processConditionalComments: true,
+    //   removeComments: true,
+    //   removeEmptyAttributes: true,
+    //   removeScriptTypeAttributes: true,
+    //   removeStyleLinkTypeAttributes: true
+    // })))
     .pipe(gulp.dest('dist'));
 });
+
+// gulp.task('ssi', () => {
+//   return gulp.src('app/*.html')
+//     .pipe(gulpSSI())
+//     .pipe(gulp.dest('dist'));
+// });
 
 gulp.task('images', () => {
   return gulp.src('app/images/**/*')
@@ -172,7 +181,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['lint', 'html', 'wiredep', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -181,4 +190,9 @@ gulp.task('default', () => {
     dev = false;
     runSequence(['clean', 'wiredep'], 'build', resolve);
   });
+});
+
+gulp.task('deploy', ['default'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });
