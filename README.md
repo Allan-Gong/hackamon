@@ -10,4 +10,4 @@ hackamon html template
 1. Run `gulp serve:test` to run the tests in the browser
 1. Run `gulp` to build your webapp for production
 1. Run `gulp serve:dist` to preview the production build
-1. Run `gulp deploy` to deploy to github pages: https://github.com/hgon23/hackamon
+1. Run `gulp deploy` to deploy to github pages: https://hgon23.github.io/hackamon/
