@@ -268,13 +268,16 @@
           $('.score-container .btn-group .btn').removeClass('active');
           $(this).toggleClass('active');
           var level = $(this).attr('data-level');
+          $('.form-group').removeClass('focused').addClass('focused');
           populate_pending_scores(level);
           render_final_score();
         });
       });
 
     });
-
+    $('.form-control').on('focus blur', function (e) {
+        $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+    }).trigger('blur');
     //]]>
 
   </script>
