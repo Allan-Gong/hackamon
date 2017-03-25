@@ -24,14 +24,16 @@
   </div>
 
   <section class="score-container">
-    <div class="pull-right">
+    <div class="wrapper flex-container-row flex-end">
     <div class="btn-group">
-      <a href="#" data-level="p" class="btn btn-default">P</a>
-      <a href="#" data-level="c" class="btn btn-default">C</a>
-      <a href="#" data-level="d" class="btn btn-default">D</a>
-      <a href="#" data-level="hd" class="btn btn-default">HD</a>
+      <a href="#" data-level="p" class="btn btn-feature">P</a>
+      <a href="#" data-level="c" class="btn btn-feature">C</a>
+      <a href="#" data-level="d" class="btn btn-feature">D</a>
+      <a href="#" data-level="hd" class="btn btn-feature">HD</a>
     </div>
-    <p href="#" class="btn btn-primary btn-lg"><span class="level">N/A</span> <span class="badge score">N/A</span></p>
+    <div class="med-txt">
+      <span class="level">N/A</span> <span class="score">N/A</span>
+    </div>
     </div>
   </section>
 
@@ -133,15 +135,15 @@
         case "c":
           minimum_score = 60;
           minimum_score_percentage = 0.6;
-          break; 
+          break;
         case "d":
           minimum_score = 70;
           minimum_score_percentage = 0.7;
-          break; 
+          break;
         case "hd":
           minimum_score = 80;
           minimum_score_percentage = 0.8;
-          break;  
+          break;
       }
 
       console.log('minimum_score: ', minimum_score);

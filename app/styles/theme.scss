@@ -39,6 +39,15 @@ a {
 .btn.btn-primary {
   @include bg-primary;
 }
+.btn.btn-feature {
+  background-color:#343434;
+  color:white;
+  border-bottom:4px solid #343434;
+  &:hover, &.active {
+    background-color:black;
+    border-bottom:4px solid #2196F3;
+  }
+}
 .pass, .at-risk {
   text-transform:uppercase;
 }
@@ -65,10 +74,10 @@ h1, h2 {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #0d87e9;
+  background: #444;
+  color:white;
 
   p {
-    font-size: 3em;
 
     .badge{
       font-size: 20px;
