@@ -61,10 +61,10 @@ h3 {
 .pass, .at-risk {
   text-transform:uppercase;
 }
-.pass {
+.pass, .bg-success {
   @include bg-success;
 }
-.at-risk {
+.at-risk, .bg-warning {
   @include bg-warning;
 }
 .not-due {
@@ -160,13 +160,27 @@ th {
     background: white !important;
     font-size: 1.6rem;
     font-weight: 300;
-    text-align: left !important;
+}
+.ht_clone_left {
+  display:none;
 }
 th, td {
-  &:nth-child(4) {
-    background:lighten(#9C27B0, 50%) !important;
-  }
   &:nth-child(2), &:nth-child(3) {
     text-align:left !important;
+  }
+}
+.marker-table {
+  th, td {
+    &:nth-child(4) {
+      background:lighten(#9C27B0, 50%) !important;
+    }
+  }
+}
+
+.student-at-risk {
+  td,th {
+    background-color: lighten(#E51C23, 40%) !important;
+    color:black;
+    border-color:#E51C23 !important;
   }
 }

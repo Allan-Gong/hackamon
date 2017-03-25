@@ -67,10 +67,10 @@
             <button class="btn btn-default">Add</button>
           </div>
           <div class="active-filters">
-            <div class="badge bg-info">Chris x</div>
+            <div class="badge bg-info">288277 x</div>
           </div>
         </form>
-        <div id="studenttable"></div>
+        <div id="studenttable" class="marker-table"></div>
 
       </div>
     </div>
@@ -84,7 +84,10 @@
     <script src="http://docs.handsontable.com/pro/bower_components/handsontable-pro/dist/handsontable.full.min.js"></script>
     <script>
     var data = [
-    ["28827767","Christopher McDonald","0","0","0","0","0"]
+    ["28827767","Christopher McDonald","0","0","0","0","0"],
+    ["28827768","Tom Smith","0","0","0","0","0"],
+    ["28827769","Julie Thompson","0","0","0","0","0"],
+    ["28827770","Lin Lee","0","0","0","0","0"]
     ];
 
     var container = document.getElementById('studenttable');
@@ -109,8 +112,7 @@
     ],
     cell: [
         {row: 0, col: 0, className: "htRight"},
-        {row: 1, col: 1, className: "htLeft htMiddle"},
-        {row: 3, col: 4, className: "htLeft htBottom"}
+        {row: 1, col: 1, className: "htLeft htMiddle"}
     ],
     });
     </script>
