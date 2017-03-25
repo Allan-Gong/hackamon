@@ -1,0 +1,291 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!--#include file="_ssi/head.html" -->
+
+<body>
+
+  <!--#include file="_ssi/ie.html" -->
+  <!--#include file="_ssi/header.html" -->
+  <div class="container">
+
+
+
+    <section id="cd-timeline" class="cd-container">
+      <!--#include file="_ssi/a/complete_1.html" -->
+      <!--#include file="_ssi/a/complete_2.html" -->
+      <!--#include file="_ssi/a/now.html" -->
+      <!--#include file="_ssi/a/pending.html" -->
+      <!--#include file="_ssi/a/final_exam.html" -->
+    </section>
+
+    <!--#include file="_ssi/footer.html" -->
+
+  </div>
+
+  <section class="score-container">
+
+
+    <div class="wrapper flex-container-row flex-end">
+      <div class="popover-container graph-container">
+        <div class="graph"  data-container="body" data-toggle="popover" data-placement="top" data-content="Your average score so far is higher than 56% of your classmates"></div>
+      </div>
+      <div class="flex-container-column">
+        <p class=" pth nm">Set goal</p>
+        <div class="btn-group pth">
+
+          <a href="#" data-level="p" class="btn btn-feature">P</a>
+          <a href="#" data-level="c" class="btn btn-feature">C</a>
+          <a href="#" data-level="d" class="btn btn-feature">D</a>
+          <a href="#" data-level="hd" class="btn btn-feature">HD</a>
+        </div>
+      </div>
+      <div class="flex-container-column">
+        <p class="pth nm">Estimate grade</p>
+        <div class="large-txt">
+          <span class="level">N/A</span> <span class="score">N/A</span>
+        </div>
+      </div>
+  </section>
+
+  <!--#include file="_ssi/scripts.html" -->
+
+  <script type="text/javascript">
+    //<![CDATA[
+    var initial_assignment_data = [];
+    var assignment_data = [];
+
+    var typingTimers = new Array();
+    var doneTypingInterval = 500;
+    var not_applicable = 'N/A';
+
+    function calculate_score() {
+      console.log(assignment_data);
+
+      var can_calculate = _.find(assignment_data, function (a) {
+        return parseInt(a.s) == NaN;
+      }) == undefined ? true : false;
+
+      if (!can_calculate) {
+        return '-';
+      }
+
+      var final_score = _.reduce(assignment_data, function (sum, a) {
+        return sum + (a.s * a.p)
+      }, 0);
+
+      return Math.round(final_score * 10) / 10;
+    }
+
+    function caldulate_level(score) {
+      if (score == not_applicable) {
+        return not_applicable;
+      }
+
+      if (score < 50) {
+        return "N";
+      }
+
+      if (score >= 50 && score < 60) {
+        return "P";
+      }
+
+      if (score >= 60 && score < 70) {
+        return "C";
+      }
+
+      if (score >= 70 && score < 80) {
+        return "D";
+      }
+
+      if (score >= 80) {
+        return "HD";
+      }
+    }
+
+    function init_data_from_ui() {
+      $('.assignment .score').each(function (index, ele) {
+        var id = $(ele).attr('data-id');
+        var percentage = $(ele).attr('data-p');
+        var score = $(ele).text() || $(ele).val();
+        console.log(id, score);
+
+        assignment_data.push({
+          'id': id,
+          's': parseInt(score),
+          'p': percentage
+        });
+
+        initial_assignment_data.push({
+          'id': id,
+          's': parseInt(score),
+          'p': percentage
+        });
+      });
+    }
+
+    function render_final_score() {
+      var final_score = calculate_score();
+      var final_level = caldulate_level(final_score);
+
+      console.log(final_level, final_score);
+
+      $('.score-container .level').text(final_level);
+      $('.score-container .score').text(final_score);
+    }
+
+    function populate_pending_scores(level) {
+      console.log('selected level: ', level);
+
+      var minimum_score;
+      var minimum_score_percentage;
+
+      switch (level) {
+        case "p":
+          minimum_score = 50;
+          minimum_score_percentage = 0.5;
+          break;
+        case "c":
+          minimum_score = 60;
+          minimum_score_percentage = 0.6;
+          break;
+        case "d":
+          minimum_score = 70;
+          minimum_score_percentage = 0.7;
+          break;
+        case "hd":
+          minimum_score = 80;
+          minimum_score_percentage = 0.8;
+          break;
+      }
+
+      console.log('minimum_score: ', minimum_score);
+      console.log('minimum_score_percentage: ', minimum_score_percentage);
+
+      console.log('initial_assignment_data: ', initial_assignment_data);
+      console.log('assignment_data: ', assignment_data);
+      assignment_data = jQuery.extend(true, [], initial_assignment_data); //JSON.parse(JSON.stringify(initial_assignment_data));;
+
+      var completed_assignments = _.filter(assignment_data, function (a) {
+        return !isNaN(a.s);
+      });
+      console.log('completed_assignments: ', completed_assignments);
+
+      var total_completed_percentage = _.reduce(completed_assignments, function (sum, a) {
+        return sum + parseFloat(a.p);
+      }, 0);
+      console.log('total_completed_percentage: ', total_completed_percentage);
+
+      var pending_assignments = _.filter(assignment_data, function (a) {
+        return isNaN(a.s);
+      });
+      console.log('pending_assignments: ', pending_assignments);
+
+      var total_pending_percentage = _.reduce(pending_assignments, function (sum, a) {
+        return sum + parseFloat(a.p);
+      }, 0);
+      console.log('total_pending_percentage: ', total_pending_percentage);
+
+      var completed_score = _.reduce(completed_assignments, function (sum, a) {
+        return sum + (a.s * a.p)
+      }, 0);
+      completed_score = Math.floor(completed_score);
+      console.log('completed_score: ', completed_score);
+
+      var minimum_completed_score = _.reduce(completed_assignments, function (sum, a) {
+        return sum + a.p * 100
+      }, 0);
+      minimum_completed_score = Math.ceil(minimum_completed_score * minimum_score_percentage);
+      console.log('minimum_completed_score: ', minimum_completed_score);
+
+      if (completed_score >= minimum_completed_score) { // minimum mark will do
+        console.log('minimum mark will do');
+
+        _.forEach(pending_assignments, function (a) {
+          a.s = 100 * minimum_score_percentage;
+          a.s = Math.ceil(a.s);
+          console.log('a: ', a);
+        });
+      } else {
+        console.log('minimum mark will NOT do');
+
+        var difference = Math.ceil( minimum_completed_score - completed_score );
+        difference = (minimum_score + difference) / total_pending_percentage - minimum_score;
+        console.log('difference: ' + difference);
+
+        // var minimum_expected_score = (minimum_score + difference) / minimum_score_percentage - minimum_score;
+
+        _.forEach(pending_assignments, function (a) {
+          var weighted_difference = Math.ceil(difference * (a.p / total_pending_percentage));
+          console.log('weighted_difference: ', weighted_difference);
+
+          var calculate_score = 100 * minimum_score_percentage + weighted_difference;
+          console.log('calculated score: ', calculate_score);
+
+          a.s = calculate_score;
+          a.s = Math.ceil(a.s);
+        });
+
+      }
+
+      _.forEach(pending_assignments, function (a) {
+        console.log('pending_assignments rendering: ', a.s);
+        $('.assignment .score[data-id=' + a.id + ']').val(a.s);
+      });
+    }
+
+    function doneTyping(ele) {
+      var id = $(ele).attr('data-id');
+      var score = $(ele).val();
+
+      var assignment = _.find(assignment_data, function (a) {
+        return a.id == id;
+      });
+
+      assignment.s = parseInt(score);
+
+      console.log('assignment:', assignment);
+
+      render_final_score();
+    }
+
+    $(function () {
+      init_data_from_ui();
+      render_final_score();
+
+      $('.assignment .score').each(function () {
+        var ele = this;
+        $(this).keyup(function () {
+          var $this = $(this);
+
+          clearTimeout($this.data('timer'));
+          $this.data('timer', setTimeout(function () {
+            $this.removeData('timer');
+
+            doneTyping(ele);
+          }, doneTypingInterval));
+        });
+      });
+
+      $('.score-container .btn-group .btn').each(function () {
+        $(this).click(function () {
+          $('.score-container .btn-group .btn').removeClass('active');
+          $(this).toggleClass('active');
+          var level = $(this).attr('data-level');
+          $('.form-group').removeClass('focused').addClass('focused');
+          populate_pending_scores(level);
+          render_final_score();
+        });
+      });
+
+    });
+    $('.form-control').on('focus blur', function (e) {
+        $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+    }).trigger('blur');
+    //]]>
+
+  </script>
+
+</body>
+
+</html>

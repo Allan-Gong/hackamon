@@ -1,41 +1,38 @@
 <!doctype html>
-<html class="no-js" lang="">
-  
+<html class="no-js" lang="en">
+
   <!--#include file="_ssi/head.html" -->
 
   <body>
 
     <!--#include file="_ssi/ie.html" -->
-    
+    <!--#include file="_ssi/header.html" -->
     <div class="container">
 
-      <!--#include file="_ssi/header.html" -->
 
-      <!--#include file="_ssi/m/navbar.html" -->
 
-      <!--#include file="_ssi/m/buttons.html" -->
-
-      <!--#include file="_ssi/m/typography.html" -->
-
-      <!--#include file="_ssi/m/tables.html" -->
-
-      <!--#include file="_ssi/m/forms.html" -->
-
-      <!--#include file="_ssi/m/navs.html" -->
-
-      <!--#include file="_ssi/m/indicators.html" -->
-
-      <!--#include file="_ssi/m/progress-bars.html" -->
-
-      <!--#include file="_ssi/m/containers.html" -->
-
-      <!--#include file="_ssi/m/dialogs.html" -->
+      <div class="row pth">
+        <h2>Current units</h2>
+        <ul class="list-group">
+          <li class="list-group-item bg-primary"><!--#include file="_ssi/unit.html" --><span class="badge pass"> Passing</span></li>
+          <li class="list-group-item bg-primary"><!--#include file="_ssi/unit.html" --><span class="badge at-risk"> At risk</span></li>
+          <li class="list-group-item bg-primary"><!--#include file="_ssi/unit.html" --><span class="badge pass"> Passing</span></li>
+          <li class="list-group-item bg-primary"><!--#include file="_ssi/unit.html" --><span class="badge pass"> Passing</span></li>
+        </ul>
+      </div>
+      <div class="row">
+        <h2>Completed units</h2>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#">2016</a><span class="badge pass">Top 10%</span></li>
+          <li class="list-group-item"><a href="#">2015</a><span class="badge pass">Top 20%</span></li>
+        </ul>
+      </div>
 
       <!--#include file="_ssi/footer.html" -->
 
     </div>
 
     <!--#include file="_ssi/scripts.html" -->
-    
+
   </body>
 </html>
