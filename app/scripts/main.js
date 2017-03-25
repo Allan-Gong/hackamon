@@ -5,6 +5,8 @@ jQuery(document).ready(function($){
 	//hide timeline blocks which are outside the viewport
 	hideBlocks(timelineBlocks, offset);
 
+	$('.popover-container [data-toggle="popover"]').popover();
+
 	//on scolling, show/animate timeline blocks when enter the viewport
 	$(window).on('scroll', function(){
 		(!window.requestAnimationFrame) 
