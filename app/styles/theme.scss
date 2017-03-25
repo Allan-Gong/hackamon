@@ -76,6 +76,9 @@ h1, h2 {
   width: 100%;
   background: #444;
   color:white;
+  .large-txt {
+    color:white;
+  }
   p {
     .badge{
       font-size: 20px;
@@ -91,9 +94,9 @@ h1, h2 {
 }
 .graph {
     background: transparent url(images/graph.png) no-repeat;
-    height: 112.5px;
-    width: 112.5px;
-    background-size: 75%;
+    height: 150px;
+    width: 150px;
+    background-size: 80%;
     cursor:pointer;
     z-index:10;
 }
