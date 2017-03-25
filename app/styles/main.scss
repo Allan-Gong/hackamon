@@ -135,3 +135,23 @@ form {
     right: 9999px;
   }
 }
+
+.score-container{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  .btn-lg {
+    padding: 15px 30px;
+  }
+
+  p {
+    font-size: 3em;
+
+    .badge{
+      font-size: 20px;
+      border-radius: 0;
+      top: -4px;
+    }
+  }
+}

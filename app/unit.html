@@ -1,30 +1,155 @@
 <!doctype html>
 <html class="no-js" lang="">
-  
-  <!--#include file="_ssi/head.html" -->
 
-  <body>
+<!--#include file="_ssi/head.html" -->
 
-    <!--#include file="_ssi/ie.html" -->
-    
-    <div class="container">
+<body>
 
-      <!--#include file="_ssi/header.html" -->
+  <!--#include file="_ssi/ie.html" -->
 
-      <section id="cd-timeline" class="cd-container">
-            <!--#include file="_ssi/a/complete.html" -->
-            <!--#include file="_ssi/a/complete.html" -->
-            <!--#include file="_ssi/a/now.html" -->
-            <!--#include file="_ssi/a/pending.html" -->
-            <!--#include file="_ssi/a/final_exam.html" -->
-      </section>
-      
-      <!--#include file="_ssi/footer.html" -->
+  <div class="container">
 
-    </div>
+    <!--#include file="_ssi/header.html" -->
 
-    <!--#include file="_ssi/scripts.html" -->
+    <section id="cd-timeline" class="cd-container">
+      <!--#include file="_ssi/a/complete_1.html" -->
+      <!--#include file="_ssi/a/complete_2.html" -->
+      <!--#include file="_ssi/a/now.html" -->
+      <!--#include file="_ssi/a/pending.html" -->
+      <!--#include file="_ssi/a/final_exam.html" -->
+    </section>
 
-    
-  </body>
+    <section class="score-container">
+      <p href="#" class="btn btn-primary btn-lg"><span class="level">N/A</span> <span class="badge score">N/A</span></p>
+    </section>
+
+    <!--#include file="_ssi/footer.html" -->
+
+  </div>
+
+  <!--#include file="_ssi/scripts.html" -->
+
+  <script type="text/javascript">
+    //<![CDATA[
+    var assignment_data =[];
+
+    var typingTimers = new Array();
+    var doneTypingInterval = 500;
+    var not_applicable = 'N/A';
+
+    function calculate_score() {
+      console.log(assignment_data);
+
+      var can_calculate = _.find(assignment_data, function(a){ return parseInt(a.s) == NaN; }) == undefined ? true : false;
+
+      if (!can_calculate) {
+        return not_applicable;
+      }
+
+      var final_score = _.reduce(assignment_data, function (sum, a) {
+        return sum + (a.s * a.p)
+      }, 0);
+
+      return final_score;
+    }
+
+    function caldulate_level(score) {
+      if (score == not_applicable) {
+        return not_applicable;
+      }
+
+      if (score < 50) {
+        return "N";
+      }
+
+      if (score >= 50 && score < 60) {
+        return "P";
+      }
+
+      if (score >= 60 && score < 70) {
+        return "C";
+      }
+
+      if (score >= 70 && score < 80) {
+        return "D";
+      }
+
+      if (score >= 80) {
+        return "HD";
+      }
+    }
+
+    function init_data_from_ui() {
+      $('.assignment .score').each(function (index, ele) {
+        var id = $(ele).attr('data-id');
+        var percentage = $(ele).attr('data-p');
+        var score = $(ele).text() || $(ele).val();
+        console.log(id, score);
+
+        assignment_data.push({
+          'id': id,
+          's': parseInt(score),
+          'p': percentage
+        });
+      });
+    }
+
+    function render_final_score() {
+      var final_score = calculate_score();
+      var final_level = caldulate_level(final_score);
+
+      console.log(final_level, final_score);
+
+      $('.score-container .level').text(final_level);
+      $('.score-container .score').text(final_score);
+    }
+
+    function doneTyping(ele) {
+      var id = $(ele).attr('data-id');
+      var score = $(ele).val();
+
+      var assignment = _.find(assignment_data, function (a) {
+        return a.id == id;
+      });
+
+      assignment.s = parseInt(score);
+
+      console.log('assignment:', assignment);
+
+      render_final_score();
+    }
+
+    $(function () {
+      init_data_from_ui();
+      render_final_score();
+
+      $('.assignment .score').each(function(){
+        var ele = this;
+        $(this).keyup(function () {
+          var $this = $(this);
+
+          clearTimeout($this.data('timer'));
+              $this.data('timer', setTimeout(function(){
+                  $this.removeData('timer');
+
+                  doneTyping(ele);
+          }, doneTypingInterval));
+        });
+
+        // $(this).keydown(function () {
+        //   var id = $(this).attr('data-id');
+        //   console.log('id:', id);
+
+        //   clearTimeout(typingTimers[id]);
+        // });
+      });
+
+    });
+
+    //]]>
+
+  </script>
+
+</body>
+
 </html>
