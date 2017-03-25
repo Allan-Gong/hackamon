@@ -1,0 +1,114 @@
+<html class="no-js" lang="">
+  
+  <!--#include file="_ssi/head.html" -->
+
+  <body>
+
+    <!--#include file="_ssi/ie.html" -->
+    
+    <div class="container">
+
+      <!--#include file="_ssi/header.html" -->
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Unit Information</h3>
+      </div>
+      <div class="panel-body">
+        <div class="list-group">
+          <a href="unit.html" class="list-group-item">
+            <h4 class="list-group-item-heading">FIT1051: Programming fundamentals in java</h4>
+            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          </a>
+        </div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                Class Assessments</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse in">
+                <div class="list-group">
+                <a href="assessments.html" class="list-group-item">In-Class Workshops</a>
+                <a href="assessments.html" class="list-group-item">In-Class Quizzes</a>
+                <a href="assessments.html" class="list-group-item">Mid-Semester Test</a>
+                </div>
+            </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                Assignment Assessments</a>
+                </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+                <div class="list-group">
+                <a href="assessment.html" class="list-group-item">Written Assignment</a>
+                </div>
+            </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                Examination Assessments</a>
+                </h4>
+            </div>
+            <div id="collapse6" class="panel-collapse collapse">
+                <div class="list-group">
+                <a href="assessment.html" class="list-group-item">Examination</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <h5>Currently Viewing: <b style="font-weight: 300">All Students</b></h5>
+        <link rel="stylesheet" type="text/css" href="http://docs.handsontable.com/pro/bower_components/handsontable-pro/dist/handsontable.full.min.css">
+        <script src="http://docs.handsontable.com/pro/bower_components/handsontable-pro/dist/handsontable.full.min.js"></script>
+        <div id="studenttable"></div>
+        <script>
+        var data = [
+        ["28827767","Christopher McDonald","0","0","0","0","0"]
+        ];
+
+        var container = document.getElementById('studenttable');
+
+        var hot = new Handsontable(container, {
+        data: data,
+        colHeaders: ["<b>Student ID</b>", "<b>Full Name</b>", "<b>Assessment Task<br>Workshops</b>", "<b>Assessment Task<br>In-Class Quizzes</b>", "<b>Assessment Task<br>Mid-Semester Test</b>", "<b>Assessment Task<br>Assignment</b>", "<b>Assessment Task<br>Examination</b>"],
+        rowHeaders: true,
+        stretchH: 'all',
+        sortIndicator: true,
+        columnSorting: true,
+        contextMenu: true,
+        className: "htCenter",
+        columns: [
+            {type: 'numeric', readOnly: true},
+            {type: 'text', readOnly: true},
+            {type: 'numeric'},
+            {type: 'numeric'},
+            {type: 'numeric'},
+            {type: 'numeric'},
+            {type: 'numeric'}
+        ],
+        cell: [
+            {row: 0, col: 0, className: "htRight"},
+            {row: 1, col: 1, className: "htLeft htMiddle"},
+            {row: 3, col: 4, className: "htLeft htBottom"}
+        ],
+        });
+        </script>
+
+      </div>
+    </div>
+
+      <!--#include file="_ssi/footer.html" -->
+
+    </div>
+
+    <!--#include file="_ssi/scripts.html" -->
+    
+  </body>
+</html>
