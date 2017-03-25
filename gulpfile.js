@@ -211,7 +211,12 @@ gulp.task('default', () => {
   });
 });
 
-gulp.task('deploy', ['default'], function() {
+gulp.task('deploy:with-build', ['default'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
+
+gulp.task('deploy', function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
