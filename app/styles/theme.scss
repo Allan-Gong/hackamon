@@ -25,6 +25,9 @@ a {
 @mixin bg-warning {
   background-color: #E51C23;
 }
+@mixin bg-notice {
+  background-color: #E66300;
+}
 .bg-primary {
   @include bg-primary;
 }
@@ -45,18 +48,18 @@ a {
 .at-risk {
   @include bg-warning;
 }
+.not-due {
+  background-color:#ddd;
+}
+.due, .panel-warning > .panel-heading {
+  @include bg-notice;
+}
 h1, h2 {
   font-weight:300;
   color:#006cab;
 }
 .flex-container-row .np {
   padding:0;
-}
-form {
-  legend{
-    position: absolute;
-    right: 9999px;
-  }
 }
 .score-container{
   position: fixed;
