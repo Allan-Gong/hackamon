@@ -139,11 +139,8 @@ form {
 .score-container{
   position: fixed;
   bottom: 0;
-  right: 0;
-
-  .btn-lg {
-    padding: 15px 30px;
-  }
+  width: 100%;
+  background: #0d87e9;
 
   p {
     font-size: 3em;
