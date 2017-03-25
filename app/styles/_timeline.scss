@@ -217,16 +217,16 @@ Modules - reusable parts of our design
   padding: .8em 0;
   opacity: .7;
 }
-.cd-timeline-content::before {
-  content: '';
-  position: absolute;
-  top: 16px;
-  right: 100%;
-  height: 0;
-  width: 0;
-  border: 7px solid transparent;
-  border-right: 7px solid white;
-}
+// .cd-timeline-content::before {
+//   content: '';
+//   position: absolute;
+//   top: 16px;
+//   right: 100%;
+//   height: 0;
+//   width: 0;
+//   border: 7px solid transparent;
+//   border-right: 7px solid white;
+// }
 
 @media only screen and (min-width: 1170px) {
   .cd-timeline-content {
@@ -234,12 +234,12 @@ Modules - reusable parts of our design
     padding: 0;
     width: 45%;
   }
-  .cd-timeline-content::before {
-    top: 24px;
-    left: 100%;
-    border-color: transparent;
-    border-left-color: white;
-  }
+  // .cd-timeline-content::before {
+  //   top: 24px;
+  //   left: 100%;
+  //   border-color: transparent;
+  //   border-left-color: white;
+  // }
   .cd-timeline-content .cd-read-more {
     float: left;
   }
@@ -254,13 +254,13 @@ Modules - reusable parts of our design
   .cd-timeline-block.right .cd-timeline-content {
     float: right;
   }
-  .cd-timeline-block.right .cd-timeline-content::before {
-    top: 24px;
-    left: auto;
-    right: 100%;
-    border-color: transparent;
-    border-right-color: white;
-  }
+  // .cd-timeline-block.right .cd-timeline-content::before {
+  //   top: 24px;
+  //   left: auto;
+  //   right: 100%;
+  //   border-color: transparent;
+  //   border-right-color: white;
+  // }
   .cd-timeline-block.right .cd-timeline-content .cd-read-more {
     float: right;
   }
