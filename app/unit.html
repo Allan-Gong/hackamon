@@ -24,6 +24,13 @@
   </div>
 
   <section class="score-container">
+
+    <div class="pull-left">
+
+      <button type="button" class="btn btn-default btn-lg percentage" data-container="body" data-toggle="popover" data-placement="top" data-content="Your average score so far is higher than 56% of your classmates">56%</button>
+
+    </div>
+
     <div class="wrapper flex-container-row flex-end">
     <div class="btn-group">
       <a href="#" data-level="p" class="btn btn-feature">P</a>
@@ -34,7 +41,6 @@
     <div class="med-txt">
       <span class="level">N/A</span> <span class="score">N/A</span>
     </div>
-    </div>
   </section>
 
   <!--#include file="_ssi/scripts.html" -->
@@ -42,7 +48,7 @@
   <script type="text/javascript">
     //<![CDATA[
     var initial_assignment_data = [];
-    var assignment_data =[];
+    var assignment_data = [];
 
     var typingTimers = new Array();
     var doneTypingInterval = 500;
@@ -51,7 +57,9 @@
     function calculate_score() {
       console.log(assignment_data);
 
-      var can_calculate = _.find(assignment_data, function(a){ return parseInt(a.s) == NaN; }) == undefined ? true : false;
+      var can_calculate = _.find(assignment_data, function (a) {
+        return parseInt(a.s) == NaN;
+      }) == undefined ? true : false;
 
       if (!can_calculate) {
         return '-';
@@ -61,7 +69,7 @@
         return sum + (a.s * a.p)
       }, 0);
 
-      return Math.round( final_score * 10 ) / 10;
+      return Math.round(final_score * 10) / 10;
     }
 
     function caldulate_level(score) {
@@ -103,7 +111,7 @@
           'p': percentage
         });
 
-       initial_assignment_data.push({
+        initial_assignment_data.push({
           'id': id,
           's': parseInt(score),
           'p': percentage
@@ -127,7 +135,7 @@
       var minimum_score;
       var minimum_score_percentage;
 
-      switch(level) {
+      switch (level) {
         case "p":
           minimum_score = 50;
           minimum_score_percentage = 0.5;
@@ -153,7 +161,7 @@
       console.log('assignment_data: ', assignment_data);
       assignment_data = jQuery.extend(true, [], initial_assignment_data); //JSON.parse(JSON.stringify(initial_assignment_data));;
 
-      var completed_assignments = _.filter(assignment_data, function(a) {
+      var completed_assignments = _.filter(assignment_data, function (a) {
         return !isNaN(a.s);
       });
       console.log('completed_assignments: ', completed_assignments);
@@ -163,7 +171,7 @@
       }, 0);
       console.log('total_completed_percentage: ', total_completed_percentage);
 
-      var pending_assignments = _.filter(assignment_data, function(a) {
+      var pending_assignments = _.filter(assignment_data, function (a) {
         return isNaN(a.s);
       });
       console.log('pending_assignments: ', pending_assignments);
@@ -176,18 +184,19 @@
       var completed_score = _.reduce(completed_assignments, function (sum, a) {
         return sum + (a.s * a.p)
       }, 0);
+      completed_score = Math.floor(completed_score);
       console.log('completed_score: ', completed_score);
 
       var minimum_completed_score = _.reduce(completed_assignments, function (sum, a) {
-        return sum + a.p * 100 * minimum_score_percentage
+        return sum + a.p * 100
       }, 0);
+      minimum_completed_score = Math.ceil(minimum_completed_score * minimum_score_percentage);
       console.log('minimum_completed_score: ', minimum_completed_score);
 
       if (completed_score >= minimum_completed_score) { // minimum mark will do
         console.log('minimum mark will do');
 
-        _.forEach(pending_assignments, function(a){
-          // console.log('a', a);
+        _.forEach(pending_assignments, function (a) {
           a.s = 100 * minimum_score_percentage;
           a.s = Math.ceil(a.s);
           console.log('a: ', a);
@@ -195,21 +204,28 @@
       } else {
         console.log('minimum mark will NOT do');
 
-        var difference = Math.ceil(minimum_completed_score - completed_score) / total_completed_percentage;
+        var difference = Math.ceil( minimum_completed_score - completed_score );
+        difference = (minimum_score + difference) / total_pending_percentage - minimum_score;
         console.log('difference: ' + difference);
 
-        _.forEach(pending_assignments, function(a){
+        // var minimum_expected_score = (minimum_score + difference) / minimum_score_percentage - minimum_score;
+
+        _.forEach(pending_assignments, function (a) {
           var weighted_difference = Math.ceil(difference * (a.p / total_pending_percentage));
           console.log('weighted_difference: ', weighted_difference);
 
-          a.s = 100 * minimum_score_percentage + weighted_difference;
+          var calculate_score = 100 * minimum_score_percentage + weighted_difference;
+          console.log('calculated score: ', calculate_score);
+
+          a.s = calculate_score;
           a.s = Math.ceil(a.s);
         });
 
       }
 
-      _.forEach(pending_assignments, function(a){
-        $('.assignment .score[data-id='+ a.id +']').val(a.s);
+      _.forEach(pending_assignments, function (a) {
+        console.log('pending_assignments rendering: ', a.s);
+        $('.assignment .score[data-id=' + a.id + ']').val(a.s);
       });
     }
 
@@ -232,22 +248,22 @@
       init_data_from_ui();
       render_final_score();
 
-      $('.assignment .score').each(function(){
+      $('.assignment .score').each(function () {
         var ele = this;
         $(this).keyup(function () {
           var $this = $(this);
 
           clearTimeout($this.data('timer'));
-              $this.data('timer', setTimeout(function(){
-                  $this.removeData('timer');
+          $this.data('timer', setTimeout(function () {
+            $this.removeData('timer');
 
-                  doneTyping(ele);
+            doneTyping(ele);
           }, doneTypingInterval));
         });
       });
 
-      $('.score-container .btn-group .btn').each(function(){
-        $(this).click(function(){
+      $('.score-container .btn-group .btn').each(function () {
+        $(this).click(function () {
           $('.score-container .btn-group .btn').removeClass('active');
           $(this).toggleClass('active');
           var level = $(this).attr('data-level');
