@@ -129,3 +129,9 @@ body {
     font-weight: 700;
 }
 
+form {
+  legend{
+    position: absolute;
+    right: 9999px;
+  }
+}
