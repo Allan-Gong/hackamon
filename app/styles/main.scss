@@ -1,11 +1,14 @@
 $icon-font-path: '../fonts/';
 @import "variables.scss";
+
+@import "timeline.scss";
+
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "bootswatch.scss";
 @import "ripples.min.scss";
-@import "timeline.scss";
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -139,34 +142,6 @@ body {
   font-weight: 700;
 }
 
-form {
-  legend {
-    position: absolute;
-    right: 9999px;
-  }
-}
-
-.score-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #0d87e9;
-  
-  p {
-    font-size: 3em;
-    .badge {
-      font-size: 20px;
-      border-radius: 0;
-      top: -4px;
-    }
-  }
-
-  .btn-lg {
-    min-width: 150px;
-  }
-
-}
-
 .progress {
   overflow: visible;
   width: 80%;
@@ -182,3 +157,6 @@ form {
   border-radius: 10px;
   background: #2196F3;
 }
+
+@import "theme.scss";
+

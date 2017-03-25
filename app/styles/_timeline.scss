@@ -1,3 +1,22 @@
+
+/* --------------------------------
+
+Modules - reusable parts of our design
+
+-------------------------------- */
+.cd-container {
+  /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
+  width: 90%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.cd-container::after {
+  /* clearfix */
+  content: '';
+  display: table;
+  clear: both;
+}
+
 #cd-timeline {
   position: relative;
   padding: 2em 0;
@@ -164,7 +183,7 @@
   background: white;
   border: 1px solid #303e49;
   border-radius: 0.25em;
-  padding: 1em;
+  padding: 0;
   box-shadow: 0 3px 0 #d7e4ed;
 }
 .cd-timeline-content:after {
@@ -173,19 +192,16 @@
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #303e49;
+  margin-top:0;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 13px;
-  font-size: 0.8125rem;
+  font-size: 1.3rem;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
 }
-.cd-timeline-content p {
-  margin: 1em 0;
-  line-height: 1.6;
-}
+
 .cd-timeline-content .cd-read-more {
   float: right;
   padding: .8em 1em;
@@ -211,24 +227,11 @@
   border: 7px solid transparent;
   border-right: 7px solid white;
 }
-@media only screen and (min-width: 768px) {
-  .cd-timeline-content h2 {
-    font-size: 20px;
-    font-size: 1.25rem;
-  }
-  .cd-timeline-content p {
-    font-size: 16px;
-    font-size: 1rem;
-  }
-  .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-    font-size: 14px;
-    font-size: 0.875rem;
-  }
-}
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-content {
     margin-left: 0;
-    padding: 1.6em;
+    padding: 0;
     width: 45%;
   }
   .cd-timeline-content::before {
@@ -246,7 +249,7 @@
     left: 122%;
     top: 6px;
     font-size: 26px;
-    font-size: 2rem;
+    font-size: 2.6rem;
   }
   .cd-timeline-block.right .cd-timeline-content {
     float: right;
@@ -399,4 +402,3 @@
     transform: translateX(0);
   }
 }
-

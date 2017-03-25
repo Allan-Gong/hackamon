@@ -1,0 +1,76 @@
+body {
+  padding-top:0;
+}
+.monash-brandheader {
+  padding-top:0.5em;
+}
+.brand-label {
+  text-transform:uppercase;
+}
+header {
+  box-shadow: 0 3px 5px #ccc;
+}
+a {
+  color: darken(#2196F3, 10%);
+}
+@mixin bg-primary {
+  background-color: darken(#2196F3, 10%);
+  a {
+    color:#fff;
+  }
+}
+@mixin bg-success {
+  background-color: darken(#4CAF50, 10%);
+}
+@mixin bg-warning {
+  background-color: #E51C23;
+}
+.bg-primary {
+  @include bg-primary;
+}
+.panel-primary {
+  > .panel-heading {
+    @include bg-primary;
+  }
+}
+.btn.btn-primary {
+  @include bg-primary;
+}
+.pass, .at-risk {
+  text-transform:uppercase;
+}
+.pass {
+  @include bg-success;
+}
+.at-risk {
+  @include bg-warning;
+}
+h1, h2 {
+  font-weight:300;
+  color:#006cab;
+}
+.flex-container-row .np {
+  padding:0;
+}
+form {
+  legend{
+    position: absolute;
+    right: 9999px;
+  }
+}
+.score-container{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #0d87e9;
+
+  p {
+    font-size: 3em;
+
+    .badge{
+      font-size: 20px;
+      border-radius: 0;
+      top: -4px;
+    }
+  }
+}
