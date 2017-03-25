@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
 
 	//on scolling, show/animate timeline blocks when enter the viewport
 	$(window).on('scroll', function(){
-		(!window.requestAnimationFrame) 
+		(!window.requestAnimationFrame)
 			? setTimeout(function(){ showBlocks(timelineBlocks, offset); }, 100)
 			: window.requestAnimationFrame(function(){ showBlocks(timelineBlocks, offset); });
 	});
@@ -23,4 +23,7 @@ jQuery(document).ready(function($){
 			( $(this).offset().top <= $(window).scrollTop()+$(window).height()*offset && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
 		});
 	}
+	$('.form-control').on('focus blur', function (e) {
+			$(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+	}).trigger('blur');
 });

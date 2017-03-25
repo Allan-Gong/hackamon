@@ -13,6 +13,13 @@ header {
 a {
   color: darken(#2196F3, 10%);
 }
+h1, h2 {
+  font-weight:300;
+  color:#006cab;
+}
+h3 {
+  font-weight:300;
+}
 @mixin bg-primary {
   background-color: darken(#2196F3, 10%);
   a {
@@ -27,6 +34,9 @@ a {
 }
 @mixin bg-notice {
   background-color: #E66300;
+}
+@mixin bg-info {
+  background-color: #9C27B0;
 }
 .bg-primary {
   @include bg-primary;
@@ -63,9 +73,8 @@ a {
 .due, .panel-warning > .panel-heading {
   @include bg-notice;
 }
-h1, h2 {
-  font-weight:300;
-  color:#006cab;
+.bg-info {
+  @include bg-info;
 }
 .flex-container-row .np {
   padding:0;
@@ -135,4 +144,29 @@ h1, h2 {
 
 .form-control:focus::-webkit-input-placeholder {
     transition: none;
+}
+/**/
+.no-shadow {
+  box-shadow:none;
+}
+td, th {
+    border-left:none !important;
+    border-top:none !important;
+    border-right:none !important;
+    border-bottom: 1px solid purple !important;
+    padding: 0.5em !important;
+}
+th {
+    background: white !important;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-align: left !important;
+}
+th, td {
+  &:nth-child(4) {
+    background:lighten(#9C27B0, 50%) !important;
+  }
+  &:nth-child(2), &:nth-child(3) {
+    text-align:left !important;
+  }
 }
