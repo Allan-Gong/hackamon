@@ -64,7 +64,11 @@ form {
   width: 100%;
   background: #0d87e9;
 
-  p {
+  .btn-lg {
+    border-radius: 0;
+  }
+
+  p,.percentage {
     font-size: 3em;
 
     .badge{
