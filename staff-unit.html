@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My marks - Monash University</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <!-- Monash brand -->
+    <link rel="stylesheet" type="text/css" href="styles/monash-minimal.css">
+    
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+</head>
+
+  <body>
+
+    <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+    <header>
+    <div class="wrapper flex-container-row space-between">
+        <div class="monash-brandheader npt"><a href="http://monash.edu/" alt="Monash University"><span class="hidden">Monash University</span></a></div>
+        <h1 class="brand-label large-txt">my.marks</h1>
+    </div>
+</header>
+    <div class="container pt">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">FIT1051: Programming fundamentals in java</h2>
+      </div>
+      <div class="panel-body">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">All marks</a>
+                </h3>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+              <div class=" ptb plr">
+                <form class="flex-container-row-resp">
+                  <div class="form-group flex-container-column">
+                    <label for="input-filter" class="control-label">Filter criteria</label>
+                    <input type="text" class="form-control score" id="input-filter">
+                  </div>
+                  <div>
+                    <button class="btn btn-default">Add</button>
+                  </div>
+                  <div class="active-filters">
+                    <div class="badge bg-info">288277 x</div>
+                  </div>
+                </form>
+                <div id="studenttable" class="marker-table"></div>
+              </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                  Class assessments</a>
+                </h3>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="list-group">
+                <a href="assessments.html" class="list-group-item">In-class workshops</a>
+                <a href="assessment.html" class="list-group-item">In-class quizzes</a>
+                <a href="assessment.html" class="list-group-item">Mid-semester test</a>
+
+                </div>
+            </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                  Assignment assessments</a>
+                </h3>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+                <div class="list-group">
+                <a href="assessment.html" class="list-group-item">Written assignment</a>
+                </div>
+            </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                  Examination assessments</a>
+                </h3>
+
+            </div>
+            <div id="collapse6" class="panel-collapse collapse">
+                <div class="list-group">
+                <a href="assessment.html" class="list-group-item">Examination</a>
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+</div>
+      <div class="footer">
+    <p>♥ from the MAD COW team</p>
+</div>
+
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='https://www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+<script src="scripts/vendor.js"></script>
+
+<script src="scripts/plugins.js"></script>
+
+<script src="scripts/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="//docs.handsontable.com/pro/bower_components/handsontable-pro/dist/handsontable.full.min.css">
+    <script src="//docs.handsontable.com/pro/bower_components/handsontable-pro/dist/handsontable.full.min.js"></script>
+    <script>
+    var data = [
+    ["28827767","Christopher McDonald","0","0","0","0","0"],
+    ["28827768","Tom Smith","0","0","0","0","0"],
+    ["28827769","Julie Thompson","0","0","0","0","0"],
+    ["28827770","Lin Lee","0","0","0","0","0"]
+    ];
+
+    var container = document.getElementById('studenttable');
+
+    var hot = new Handsontable(container, {
+    data: data,
+    colHeaders: ["Student ID", "Name", "Workshops", "In-class quizzes", "Mid-semester test", "Assignment", "Exam"],
+    rowHeaders: true,
+    stretchH: 'all',
+    sortIndicator: true,
+    columnSorting: true,
+    contextMenu: true,
+    className: "htCenter",
+    columns: [
+        {type: 'numeric', readOnly: true},
+        {type: 'text', readOnly: true},
+        {type: 'numeric'},
+        {type: 'numeric'},
+        {type: 'numeric'},
+        {type: 'numeric'},
+        {type: 'numeric'}
+    ],
+    cell: [
+        {row: 0, col: 0, className: "htRight"},
+        {row: 1, col: 1, className: "htLeft htMiddle"}
+    ],
+    });
+    </script>
+  </body>
+</html>
