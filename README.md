@@ -5,6 +5,7 @@ hackamon html template
 
 1. Install: `npm install --global yo gulp-cli bower`
 1. Run `npm install` to install dependencies
+1. Run `bower install` to install bower dependencies
 1. Run `gulp serve` to preview and watch for changes
 1. Run `bower install --save <package>` to install frontend dependencies
 1. Run `gulp serve:test` to run the tests in the browser
