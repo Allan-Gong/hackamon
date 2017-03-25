@@ -84,6 +84,19 @@ h1, h2 {
     }
   }
 }
+.bs-component {
+    position: absolute;
+    top: -40px;
+    left: 50px;
+}
+.graph {
+    background: transparent url(images/graph.png) no-repeat;
+    height: 112.5px;
+    width: 112.5px;
+    background-size: 75%;
+    cursor:pointer;
+    z-index:10;
+}
 /* --- material floating label --- */
 
 .form-group {
