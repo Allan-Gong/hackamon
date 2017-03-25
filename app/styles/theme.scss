@@ -7,3 +7,41 @@ body {
 header {
   box-shadow: 0 3px 5px #ccc;
 }
+a {
+  color: darken(#2196F3, 10%);
+}
+@mixin bg-primary {
+  background-color: darken(#2196F3, 10%);
+  a {
+    color:#fff;
+  }
+}
+@mixin bg-success {
+  background-color: darken(#4CAF50, 10%);
+}
+@mixin bg-warning {
+  background-color: darken(#E51C23, 20%);
+}
+.bg-primary {
+  @include bg-primary;
+}
+.panel-primary {
+  > .panel-heading {
+    @include bg-primary;
+  }
+}
+.btn.btn-primary {
+  @include bg-primary;
+}
+.pass, .at-risk {
+  text-transform:uppercase;
+}
+.pass {
+  @include bg-success;
+}
+.at-risk {
+  @include bg-warning;
+}
+h1, h2 {
+  font-weight:300;
+}

@@ -1,6 +1,7 @@
 $icon-font-path: '../fonts/';
 
 @import "variables.scss";
+@import "timeline.scss";
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -9,7 +10,7 @@ $icon-font-path: '../fonts/';
 @import "bootswatch.scss";
 @import "ripples.min.scss";
 
-@import "timeline.scss";
+
 
 .browserupgrade {
   margin: 0.2em 0;
