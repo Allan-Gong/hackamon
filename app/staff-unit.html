@@ -19,6 +19,29 @@
             <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">All marks</a>
+                </h3>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+              <div class=" ptb plr">
+                <form class="flex-container-row-resp">
+                  <div class="form-group flex-container-column">
+                    <label for="input-filter" class="control-label">Filter criteria</label>
+                    <input type="text" class="form-control score" id="input-filter">
+                  </div>
+                  <div>
+                    <button class="btn btn-default">Add</button>
+                  </div>
+                  <div class="active-filters">
+                    <div class="badge bg-info">288277 x</div>
+                  </div>
+                </form>
+                <div id="studenttable" class="marker-table"></div>
+              </div>
+            </div>
+            <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
                   Class assessments</a>
                 </h3>
@@ -60,25 +83,11 @@
             </div>
           </div>
         </div>
-        <h3>Enter marks</h3>
-        <form class="flex-container-row-resp">
-          <div class="form-group flex-container-column">
-            <label for="input-filter" class="control-label">Filter criteria</label>
-            <input type="text" class="form-control score" id="input-filter">
-          </div>
-          <div>
-            <button class="btn btn-default">Add</button>
-          </div>
-          <div class="active-filters">
-            <div class="badge bg-info">288277 x</div>
-          </div>
-        </form>
-        <div id="studenttable" class="marker-table"></div>
 
 
       </div>
     </div>
-
+</div>
       <!--#include file="_ssi/footer.html" -->
 
     </div>
