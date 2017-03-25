@@ -26,21 +26,26 @@
   <section class="score-container">
 
 
-    <div class="bs-component pull-left">
-
-      <button type="button" class="btn btn-default btn-lg percentage" data-container="body" data-toggle="popover" data-placement="top" data-content="Your average score so far is higher than 56% of your classmates">56%</button>
-
-    </div>
-
-    <div class="pull-right">
-      <div class="btn-group">
-        <a href="#" data-level="p" class="btn btn-default">P</a>
-        <a href="#" data-level="c" class="btn btn-default">C</a>
-        <a href="#" data-level="d" class="btn btn-default">D</a>
-        <a href="#" data-level="hd" class="btn btn-default">HD</a>
+    <div class="wrapper flex-container-row flex-end">
+      <div class="bs-component graph-container">
+        <div class="graph"  data-container="body" data-toggle="popover" data-placement="top" data-content="Your average score so far is higher than 56% of your classmates"></div>
       </div>
-      <p href="#" class="btn btn-primary btn-lg"><span class="level">N/A</span> <span class="badge score">N/A</span></p>
-    </div>
+      <div class="flex-container-column">
+        <p class=" pth nm">Set goal</p>
+        <div class="btn-group pth">
+
+          <a href="#" data-level="p" class="btn btn-feature">P</a>
+          <a href="#" data-level="c" class="btn btn-feature">C</a>
+          <a href="#" data-level="d" class="btn btn-feature">D</a>
+          <a href="#" data-level="hd" class="btn btn-feature">HD</a>
+        </div>
+      </div>
+      <div class="flex-container-column">
+        <p class="pth nm">Estimate grade</p>
+        <div class="large-txt">
+          <span class="level">N/A</span> <span class="score">N/A</span>
+        </div>
+      </div>
   </section>
 
   <!--#include file="_ssi/scripts.html" -->
@@ -267,13 +272,16 @@
           $('.score-container .btn-group .btn').removeClass('active');
           $(this).toggleClass('active');
           var level = $(this).attr('data-level');
+          $('.form-group').removeClass('focused').addClass('focused');
           populate_pending_scores(level);
           render_final_score();
         });
       });
 
     });
-
+    $('.form-control').on('focus blur', function (e) {
+        $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+    }).trigger('blur');
     //]]>
 
   </script>

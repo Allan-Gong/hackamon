@@ -39,6 +39,15 @@ a {
 .btn.btn-primary {
   @include bg-primary;
 }
+.btn.btn-feature {
+  background-color:#343434;
+  color:white;
+  border-bottom:4px solid #343434;
+  &:hover, &.active {
+    background-color:black;
+    border-bottom:4px solid #2196F3;
+  }
+}
 .pass, .at-risk {
   text-transform:uppercase;
 }
@@ -65,19 +74,65 @@ h1, h2 {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #0d87e9;
-
-  .btn-lg {
-    border-radius: 0;
+  background: #444;
+  color:white;
+  .large-txt {
+    color:white;
   }
-
-  p,.percentage {
-    font-size: 3em;
-
+  p {
     .badge{
       font-size: 20px;
       border-radius: 0;
       top: -4px;
     }
   }
+}
+.graph-container {
+    position: absolute;
+    top: -40px;
+    left: 50px;
+}
+.graph {
+    background: transparent url(images/graph.png) no-repeat;
+    height: 150px;
+    width: 150px;
+    background-size: 80%;
+    cursor:pointer;
+    z-index:10;
+}
+/* --- material floating label --- */
+
+.form-group {
+    display: flex;
+    height: 55px;
+    position:relative;
+}
+
+.control-label {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+    margin-top:-15px;
+}
+
+.form-group.focused .control-label {
+    transform: scale(0.75);
+}
+
+.form-control {
+    align-self: flex-end;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    transition: none;
 }
